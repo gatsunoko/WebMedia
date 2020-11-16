@@ -17,7 +17,10 @@
                     id: 'previw',
                     onchange: "previewFile('previw')",
                     accept: 'image/*'
-    = image_tag '', name: "previw"
+    - if @genre.image.present?
+      = image_tag @genre.image.variant(resize_to_fit: [200, 200])
+    - else
+      = image_tag '', name: "previw"
   #tags.my-2
     %p
       タグ

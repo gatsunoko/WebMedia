@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   has_many :tags, dependent: :destroy
   accepts_nested_attributes_for :tags, allow_destroy: true
   has_one_attached :image #active_starage
+  has_many :recommend_articles
 
   is_impressionable :counter_cache => true, :column_name => :pv_count, unique: :all
 

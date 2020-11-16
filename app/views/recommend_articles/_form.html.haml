@@ -1,0 +1,16 @@
+= form_for @recommend_article do |f|
+  - if @recommend_article.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@recommend_article.errors.count, "error")} prohibited this recommend_article from being saved:"
+      %ul
+        - @recommend_article.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :article
+    = f.number_field :article_id
+  .field
+    = f.label :order_number
+    = f.number_field :order_number
+  .actions
+    = f.submit 'Save'

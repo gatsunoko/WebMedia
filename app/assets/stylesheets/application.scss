@@ -497,6 +497,7 @@ ul.categories {
     padding: 15px 0;
     max-width: 280px;
     .article_ranking,
+    .recommend_articles,
     .author_ranking {
       .title_section {
         display: flex;
@@ -515,7 +516,8 @@ ul.categories {
         }
       }
     }
-    .article_ranking {
+    .article_ranking,
+    .recommend_articles {
       .articles {
         padding: 5px;
         img {

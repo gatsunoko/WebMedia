@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recommend_articles
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     confirmations: 'users/confirmations',
                                     sessions: "users/sessions",

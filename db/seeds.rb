@@ -12,12 +12,14 @@ Genre.create(title: '神話')
 Genre.create(title: '化学')
 Genre.create(title: '人物')
 Genre.create(title: '組織')
-1000.times {
-  genre_id = rand(1..7)
-  article = Article.create(title: 'タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、',
-                           eyecatch: 'アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、',
-                           genre_id: genre_id,
-                           release: true,
-                           pv_count: rand(10..10000))
-  Tag.create(title: 'タグ', article_id: article.id)
-}
+if Rails.env == "development"
+  1000.times {
+    genre_id = rand(1..7)
+    article = Article.create(title: 'タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、',
+                            eyecatch: 'アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、',
+                            genre_id: genre_id,
+                            release: true,
+                            pv_count: rand(10..10000))
+    Tag.create(title: 'タグ', article_id: article.id)
+  }
+end

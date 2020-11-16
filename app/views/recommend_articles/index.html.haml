@@ -1,0 +1,10 @@
+%h1 おすすめ記事一覧
+
+%ul
+- @recommend_articles.each do |recommend_article|
+  %li
+    %p= recommend_article.article.title
+    = link_to 'Show', recommend_article
+    = link_to 'Edit', edit_recommend_article_path(recommend_article)
+    = link_to 'Destroy', recommend_article, method: :delete, data: { confirm: 'Are you sure?' }
+= link_to 'おすすめ登録', new_recommend_article_path

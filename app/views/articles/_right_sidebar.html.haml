@@ -22,26 +22,43 @@
                 %img{:src => "http://placehold.it/50x50"}/
             .text_area
               %p.title=article.title
-  .author_ranking
+  .recommend_articles
     .title_section
-      %h4 人気のライター
-      %p ファッションで人気のライター
-    %ul.authors
-      %li
-        %a{:href => "#"}
-          %img{:src => "http://placehold.it/75x75"}/
-          .text_area
-            %p.name 山田 太郎
-            %p.profile 素敵な旅をお届けします
-      %li
-        %a{:href => "#"}
-          %img{:src => "http://placehold.it/75x75"}/
-          .text_area
-            %p.name 山田 太郎
-            %p.profile 素敵な旅をお届けします
-      %li
-        %a{:href => "#"}
-          %img{:src => "http://placehold.it/75x75"}/
-          .text_area
-            %p.name 山田 太郎
-            %p.profile 素敵な旅をお届けします
+      %h4 おすすめ記事
+      %p 当サイト管理人からのおすすめ記事です！
+    %ul.articles
+      - RecommendArticle.all.order(order_number: :asc).each.with_index(1) do |article, i|
+        %li
+          = link_to article.article do
+            .img_area
+              %p.ranking_number="#{i.to_s}"
+              - if article.article.image.present?
+                = image_tag article.article.image.variant(resize_to_fit: [200, 200])
+              - else
+                %img{:src => "http://placehold.it/50x50"}/
+            .text_area
+              %p.title=article.article.title
+  -#
+    .author_ranking
+      .title_section
+        %h4 人気のライター
+        %p ファッションで人気のライター
+      %ul.authors
+        %li
+          %a{:href => "#"}
+            %img{:src => "http://placehold.it/75x75"}/
+            .text_area
+              %p.name 山田 太郎
+              %p.profile 素敵な旅をお届けします
+        %li
+          %a{:href => "#"}
+            %img{:src => "http://placehold.it/75x75"}/
+            .text_area
+              %p.name 山田 太郎
+              %p.profile 素敵な旅をお届けします
+        %li
+          %a{:href => "#"}
+            %img{:src => "http://placehold.it/75x75"}/
+            .text_area
+              %p.name 山田 太郎
+              %p.profile 素敵な旅をお届けします

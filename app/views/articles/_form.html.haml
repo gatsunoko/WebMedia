@@ -30,7 +30,11 @@
     - if controller_name == 'articles' && (action_name == 'new' || action_name == 'create')
       = image_tag '', name: "previw"
     - else
-      = image_tag @article.image.variant(resize_to_fit: [600, 600]), name: "previw"
+      - if @article.image.present?
+        = image_tag @article.image.variant(resize_to_fit: [600, 600]), name: "previw"
+      - else
+        = image_tag '', name: "previw"
+
   #tags.my-2
     %p
       タグ
