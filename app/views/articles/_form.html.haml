@@ -1,0 +1,48 @@
+= form_with(model: article, local: true) do |form|
+  - if article.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(article.errors.count, "error")
+        prohibited this article from being saved:
+      %ul
+        - article.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label 'タイトル'
+    = form.text_field :title, class: 'title'
+  .field
+    = form.label 'アイキャッチ'
+    = form.text_area :eyecatch, class: 'text'
+  .field
+    = form.label :genre_id do
+      ジャンル
+      %span.required
+        (必須)
+    = form.collection_select :genre_id,
+                          Genre.all.order(id: :asc),
+                          :id, :title, {}, {class: 'genre'}
+  .field
+    = form.label '画像'
+    = form.file_field :image,
+                    id: 'previw',
+                    onchange: "previewFile('previw')",
+                    accept: 'image/*'
+    - if controller_name == 'articles' && (action_name == 'new' || action_name == 'create')
+      = image_tag '', name: "previw"
+    - else
+      = image_tag @article.image.variant(resize_to_fit: [600, 600]), name: "previw"
+  #tags.my-2
+    %p
+      タグ
+    = form.nested_fields :tags do |tag|
+      .field
+        = tag.text_field :title
+        = tag.remove_nested_fields_button '削除'
+    = form.add_nested_fields_button :tags, '追加'
+  .field
+    = form.label '公開する'
+    = form.check_box :release, { class: 'checker_class_mp'}, 'true', 'false'
+  .field.mt-ios
+    = form.rich_text_area :content
+  .actions
+    = form.submit

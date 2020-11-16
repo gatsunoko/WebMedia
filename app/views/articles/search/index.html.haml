@@ -1,0 +1,21 @@
+.contents
+  .articles_area
+    - if controller_name == 'genres' && action_name == 'articles'
+      %h4="#{@genre.title}の記事一覧"
+    - else 
+      %h4="記事一覧"
+    .order_change_area
+      - if /order=pv/ =~ request.url
+        = link_to '新着', "#{request.fullpath.gsub('order=pv', '')}"
+        %p.active{:href => "#"} 人気順
+      - else
+        %p.active{:href => "#"} 新着
+        = link_to '人気順', "#{request.fullpath}&order=pv"
+    = link_to '新規登録', new_article_path
+    = render 'articles/articles'
+    .paginate
+      .page_entries_info
+        = page_entries_info @articles
+      .pagination
+        = paginate @articles
+  = render 'articles/right_sidebar'

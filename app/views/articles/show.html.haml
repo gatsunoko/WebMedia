@@ -1,0 +1,32 @@
+.contents.show
+  .articles_area
+    .title_area
+      %h1= @article.title
+      %p.text=@article.eyecatch
+      %ul.tags
+        - @article.tags.each do |tag|
+          %li.tag
+            %a{:href => "#"}=tag.title
+      .count_area
+        %p.count_text
+          %span.count=@article.pv_count
+          View
+      - if @article.image.present?
+        = image_tag @article.image.variant(resize_to_fit: [600, 600])
+    = link_to 'Edit', edit_article_path(@article)
+    .article
+      = @article.content
+    .related_post
+      %h4 関連する記事
+      %ul.articles
+        - @relateArticles.each do |article|
+          %li
+            = link_to article do
+              - if article.image.present?
+                = image_tag article.image.variant(resize_to_fit: [150, 150])
+              - else
+                %img{:src => "http://placehold.it/100x100"}/
+              .text_area
+                %p.title= article.title
+                %p.text 「お洒落上級者さんは、高い洋服を着ているからハイセンスに見える」というのは全くの間違い。プチプラの洋服でも、着こなしによって高見えさせること...
+  = render 'right_sidebar'

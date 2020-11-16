@@ -1,0 +1,30 @@
+= form_for @genre do |f|
+  - if @genre.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@genre.errors.count, "error")} prohibited this genre from being saved:"
+      %ul
+        - @genre.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :text
+    = f.text_area :text
+  .field
+    = f.file_field :image,
+                    id: 'previw',
+                    onchange: "previewFile('previw')",
+                    accept: 'image/*'
+    = image_tag '', name: "previw"
+  #tags.my-2
+    %p
+      タグ
+    = f.nested_fields :genre_recommend_tags do |tag|
+      .field
+        = tag.text_field :title
+        = tag.remove_nested_fields_button '削除'
+    = f.add_nested_fields_button :genre_recommend_tags, '追加'
+  .actions
+    = f.submit 'Save'

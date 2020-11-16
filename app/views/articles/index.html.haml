@@ -1,0 +1,76 @@
+.eyecatch
+  .eyecatch_inner
+    - if controller_name == 'genres' && action_name == 'articles'
+      - if @genre.image.present?
+        = image_tag @genre.image.variant(resize_to_fit: [300, 300])
+      - else
+        %img{:src => "http://placehold.it/200x200"}/
+    - else
+      %img{:src => "http://placehold.it/200x200"}/
+    - if controller_name == 'genres' && action_name == 'articles'
+      .text_area
+        %p.title=@genre.title
+        %p.text=@genre.text
+        %ul.tags
+          - @genre.genre_recommend_tags.each do |tag|
+            %li.tag
+              = link_to tag.title, articles_search_path(keyword: tag.title)
+    - else
+      .text_area
+        %p.title ホーム
+        %p.text サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、
+        %ul.tags
+          %li.tag
+            %a{:href => "#"} コーディネート
+          %li.tag
+            %a{:href => "#"} アクセサリー
+          %li.tag
+            %a{:href => "#"} ブランド
+          %li.tag
+            %a{:href => "#"} 服
+          %li.tag
+            %a{:href => "#"} 帽子
+          %li.tag
+            %a{:href => "#"} アパレル
+          %li.tag
+            %a{:href => "#"} ファッション雑貨
+.contents
+  .left_sidebar
+    %h5 記事
+    %ul.categories
+      - if controller_name == 'articles' && action_name == 'index'
+        - active = true
+      - else
+        - active = false
+      %li{ class: "#{active ? 'active' : ''}"}
+        = link_to root_path do
+          %img{:src => "http://placehold.it/20x20"}>/
+          ホーム
+      - Genre.all.each do |genre|
+        - if controller_name == 'genres' && action_name == 'articles' && @genre.id == genre.id
+          - active = true
+        - else
+          - active = false
+        %li{ class: "#{active ? 'active' : ''}"}
+          = link_to articles_genre_path(genre.id) do
+            %img{:src => "http://placehold.it/20x20"}>/
+            = genre.title
+  .articles_area
+    - if controller_name == 'genres' && action_name == 'articles'
+      %h4="#{@genre.title}の記事一覧"
+    - else 
+      %h4="記事一覧"
+    .order_change_area
+      - if /order=pv/ =~ request.url
+        = link_to '新着', "#{request.path_info}"
+        %p.active{:href => "#"} 人気順
+      - else
+        %p.active{:href => "#"} 新着
+        = link_to '人気順', "#{request.path_info}?order=pv"
+    = render 'articles/articles'
+    .paginate
+      .page_entries_info
+        = page_entries_info @articles
+      .pagination
+        = paginate @articles
+  = render 'articles/right_sidebar'

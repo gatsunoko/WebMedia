@@ -1,0 +1,47 @@
+.right_sidebar
+  .article_ranking
+    .title_section
+      - if controller_name == 'genres' && action_name == 'articles'
+        %h4="#{@genre.title}のランキング"
+        %p="人気の#{@genre.title}の記事"
+      - elsif controller_name == 'articles' && action_name == 'show'
+        %h4="#{@article.genre.title}のランキング"
+        %p="人気の#{@article.genre.title}の記事"
+      - else
+        %h4="ランキング"
+        %p="人気の記事"
+    %ul.articles
+      - @ranking_articles.each.with_index(1) do |article, i|
+        %li
+          = link_to article do
+            .img_area
+              %p.ranking_number="#{i.to_s}"
+              - if article.image.present?
+                = image_tag article.image.variant(resize_to_fit: [200, 200])
+              - else
+                %img{:src => "http://placehold.it/50x50"}/
+            .text_area
+              %p.title=article.title
+  .author_ranking
+    .title_section
+      %h4 人気のライター
+      %p ファッションで人気のライター
+    %ul.authors
+      %li
+        %a{:href => "#"}
+          %img{:src => "http://placehold.it/75x75"}/
+          .text_area
+            %p.name 山田 太郎
+            %p.profile 素敵な旅をお届けします
+      %li
+        %a{:href => "#"}
+          %img{:src => "http://placehold.it/75x75"}/
+          .text_area
+            %p.name 山田 太郎
+            %p.profile 素敵な旅をお届けします
+      %li
+        %a{:href => "#"}
+          %img{:src => "http://placehold.it/75x75"}/
+          .text_area
+            %p.name 山田 太郎
+            %p.profile 素敵な旅をお届けします

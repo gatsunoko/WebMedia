@@ -1,0 +1,708 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require reset.css
+ *= require_tree .
+ *= require_self
+ */
+ @charset "utf-8";
+:root {
+  --color1: #FFFFFF;/*しろ*/
+  --color2: #F5F5F5;/*ぐれい*/
+  --color3: #eee;/*濃いグレイ*/
+  --color4: #666666;/*すごく濃いグレイ*/
+  --color5: #999999;/*文字に使うわりと濃いグレイ*/
+  --color6: #eb6a7a;/*ぴんく*/
+}
+/* 基本スタイル */
+* {
+    box-sizing: border-box;
+    font-family: "メイリオ", sans-serif;
+}
+html, body {
+  margin: 0;
+}
+html {
+  font-size: 32px;
+}
+label,
+p,
+a {
+  font-size: 0.6rem;
+}
+label {
+  display: inline-block;
+  width: 100%;
+}
+.trix-content .attachment--preview .attachment__caption {
+  font-size: 0.4rem;
+}
+button.trix-button {
+  font-size: 0.6rem;
+}
+.trix-content {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color4);
+  div, p {
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--color4);
+  }
+}
+underline {
+  text-decoration: underline;
+}
+#trix-toolbar-1 {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+h1 {
+  font-size: 0.9rem;
+  color: black;
+  background-color: var(--color1);
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
+  line-height: 1.2;
+}
+h2 {
+  font-size: 0.65rem;
+  color: black;
+  border-bottom: 2px solid var(--color6);
+  padding: 5px 0;
+  margin: 15px 0;
+}
+h3 {
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  color: black;
+}
+h3::before {
+  content: '●';
+  color: var(--color6);
+  font-size: 0.5rem;
+  font-weight: bold;
+}
+h4 {
+  font-size: 0.55rem;
+  padding: 15px 0;
+}
+h5 {
+  font-size: 13px;
+  color: var(--color4);
+  margin: 18px 9px 14px;
+  font-weight: 700;
+}
+p {
+  font-size: 16px;
+  color: #4d4d4d;
+  font-family: メイリオ,Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック",sans-serif;
+  line-height: 1.4;
+}
+a {
+  font-size: 18px;
+  color: blue;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+/* ページデザイン */
+ul.categories {
+  li {
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a {
+      line-height: 40px;
+      color: var(--color4);
+      font-size: 0.4rem;
+      padding: 10px 0 10px 8px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  li.active {
+    background-color: var(--color3);
+    a {
+      font-weight: bold;
+    }
+  }
+}
+// ナビバー関係
+.navbar_lg {
+  display: flex;
+}
+.navbar_min {
+  display: none;
+}
+@media screen and (max-width: 1024px) {
+  .navbar_lg {
+    display: none;
+  }
+  .navbar_min {
+    display: flex;
+  }
+}
+.navbar_lg {
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 72px;
+  background-color: var(--color1);
+  border-bottom: 1px solid var(--color3);
+  .form {
+    position: relative;
+    .search_text {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 30px;
+      border-radius: 3px;
+      font-size: 12px;
+      border: 1px solid var(--color3);
+    }
+    .search_button {
+      position: absolute;
+      top: 3px;
+      left: 250px;
+      cursor: pointer;
+      width: 50px;
+      height: 30px;
+      background: url("http://placehold.it/50x30") left top no-repeat;
+      border: 1px solid var(--color3);
+    }
+  }
+  .link_area {
+    a {
+      font-size: 0.5rem;
+      color: var(--color4);
+    }
+  }
+}
+/*ハンバーガーメニュー*/
+.navbar_min {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.16);
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  z-index: 100;
+}
+.navbar_min .logo_area {
+  height: inherit;
+}
+.navbar_min .logo_area img {
+  height: inherit;
+  width: auto;
+}
+.global-nav {
+  position: fixed;
+  right: -320px; /* これで隠れる */
+  top: 0;
+  width: 300px; /* スマホに収まるくらい */
+  height: 100vh;
+  padding-top: 40px;
+  background-color: #fff;
+  transition: all .6s;
+  z-index: 200;
+  overflow-y: auto; /* メニューが多くなったらスクロールできるように */
+}
+.hamburger {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px; /* クリックしやすいようにちゃんと幅を指定する */
+  height: 40px; /* クリックしやすいようにちゃんと高さを指定する */
+  cursor: pointer;
+  z-index: 300;
+  background-color: #f0f0f0;
+}
+.global-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.global-nav__item {
+  text-align: center;
+  padding: 0 14px;
+}
+.global-nav__item a {
+  display: block;
+  padding: 8px 0 4px 0;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: #111;
+}
+.global-nav__item a:hover {
+  background-color: #eee;
+}
+.hamburger__line {
+  position: absolute;
+  left: 11px;
+  width: 18px;
+  height: 1px;
+  background-color: #111;
+  transition: all .6s;
+}
+.hamburger__line--1 {
+  top: 14px;
+}
+.hamburger__line--2 {
+  top: 20px;
+}
+.hamburger__line--3 {
+  top: 26px;
+}
+.black-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .6s;
+  cursor: pointer;
+}
+/* 表示された時用のCSS */
+.nav-open .global-nav {
+  right: 0;
+}
+.nav-open .black-bg {
+  opacity: .8;
+  visibility: visible;
+}
+.nav-open .hamburger__line--1 {
+  transform: rotate(45deg);
+  top: 20px;
+}
+.nav-open .hamburger__line--2 {
+  width: 0;
+  left: 50%;
+}
+.nav-open .hamburger__line--3 {
+  transform: rotate(-45deg);
+  top: 20px;
+}
+/*ハンバーガーメニューここまで*/
+
+.eyecatch {
+  width: 100%;
+  height: 300px;
+  background-color: var(--color2);
+  border-bottom: 1px solid var(--color3);
+  .eyecatch_inner {
+    max-width: 1024px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .text_area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      align-content: center;
+      p {
+        padding: 0 10px;
+      }
+      p.title {
+        font-size: 0.8rem;
+      }
+      p.text {
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color4);
+      }
+      .tags {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        .tag {
+          padding: 0 5px;
+          a {
+            font-size: 0.4rem;
+            background-color: var(--color1);
+            color: black;
+            border: 1px solid var(--color3);
+            display: inline-block;
+            padding: 5px 8px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .eyecatch {
+    height: auto;
+    padding: 15px 0;
+    .eyecatch_inner {
+      height: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      p.title {
+        text-align: center;
+      }
+    }
+  }
+}
+.container {
+  z-index: 0;
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 60px;
+  }
+}
+.contents {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  .left_sidebar {
+    max-width: 140px;
+    border-right: 1px solid var(--color3);
+  }
+  .articles_area {
+    padding: 15px;
+    width: 570px;
+    .order_change_area {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      a {
+        display: inline-block;
+        color: var(--color4);
+        font-size: 0.5rem;
+        padding-top: 10px 0;
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid var(--color3);
+        background-color: var(--color2);
+        margin: 0 5px 10px 0;
+      }
+      p.active {
+        font-weight: bold;
+        display: inline-block;
+        color: black;
+        font-size: 0.5rem;
+        padding-top: 10px;
+        width: 130px;
+        height: 40px;
+        text-align: center;
+        border: 1px solid var(--color3);
+        background-color: var(--color1);
+        margin: 0 5px 10px 0;
+      }
+      border-bottom: 1px solid var(--color3);
+    }
+    .articles {
+      li {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--color3);
+      a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+          p {
+            padding: 0 15px;
+          }
+          p.title {
+            font-size: 0.5rem;
+            color: var(--color4);
+          }
+          p.text {
+            font-size: 0.35rem;
+            color: var(--color5);
+          }
+        }
+      }
+    }
+    .paginate {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 15px 0;
+      .page_entries_info {
+        font-size: 16px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        a, span.current {
+          display: inline-block;
+          color: black;
+          font-size: 0.5rem;
+          width: 38px;
+          height: 38px;
+          text-align: center;
+          background-color: var(--color1);
+          border: 1px solid var(--color3);
+          padding: 0;
+          line-height: 38px;
+          margin: 0 5px;
+        }
+        span.current {
+          background-color: var(--color2);
+        }
+      }
+    }
+  }
+  .right_sidebar {
+    padding: 15px 0;
+    max-width: 280px;
+    .article_ranking,
+    .author_ranking {
+      .title_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-left: 3px solid var(--color6);
+        padding: 5px;
+        border-bottom: 1px solid var(--color3);
+        h4 {
+          padding: 0;
+        }
+        p {
+          font-size: 0.35rem;
+          color: var(--color5);
+          padding: 5px 0;
+        }
+      }
+    }
+    .article_ranking {
+      .articles {
+        padding: 5px;
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+        }
+        li {
+          padding: 5px 0;
+          border-bottom: 1px solid var(--color3);
+        a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .img_area {
+              position: relative;
+              p {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                line-height: 20px;
+                border-radius: 50px;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                font-size: 0.4rem;
+                color: var(--color1);
+                background-color: var(--color6);
+              }
+            }
+            p {
+              padding: 0 5px;
+            }
+            p.title {
+              font-size: 0.4rem;
+              color: var(--color4);
+            }
+          }
+        }
+      }
+    }
+    .author_ranking {
+      li {
+        border-bottom: 1px solid var(--color3);
+        padding: 5px;
+        a {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50px;
+          }
+          .text_area {
+            p {
+              padding: 0 0 0 5px;
+            }
+            p.name {
+              font-size: 0.4rem;
+              color: black;
+            }
+            p.profile {
+              font-size: 0.4rem;
+              color: var(--color4);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .contents {
+    flex-wrap: wrap;
+    .left_sidebar {
+      display: none;
+    }
+    .right_sidebar {
+      padding: 0 10px;
+      max-width: 100%;
+    }
+  }
+}
+footer {
+  width: 100%;
+  background-color: var(--color2);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 14px;
+    padding: 5px 0;
+    text-align: center;
+  }
+  p.copyright {
+    font-weight: bold;
+  }
+}
+
+// show
+.show {
+  .articles_area {
+    max-width: 710px;
+    .title_area {
+      border-bottom: 1px solid var(--color3);
+      p.text {
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color4);
+      }
+      .tags {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        .tag {
+          padding: 0 5px;
+          a {
+            font-size: 0.4rem;
+            background-color: var(--color1);
+            color: black;
+            border: 1px solid var(--color3);
+            display: inline-block;
+            padding: 5px 8px;
+            text-decoration: none;
+          }
+        }
+      }
+      .count_area {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+        p.count_text {
+          color: var(--color4);
+          font-size: 0.5rem;
+          span.count {
+            font-size: 0.6rem;
+            color: black;
+            font-weight: bold;
+          }
+        }
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    .article {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color3);
+      p.article_text {
+        font-size: 16px;
+        line-height: 1.4;
+        color: black;
+      }
+    }
+  }
+}
+
+//form
+.article_edit,
+.article_new {
+  form {
+    .title,
+    .text {
+      width: 100%;
+      max-width: 600px;
+    }
+    .title {
+      width: 100%;
+      max-width: 600px;
+      height: 40px;
+      font-size: 20px;
+    }
+    .text {
+      min-height: 150px;
+    }
+    .genre {
+      width: 200px;
+      font-size: 16px;
+      height: 30px;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+%ul.articles
+  - @articles.each do |article|
+    %li
+      = link_to article do
+        - if article.image.present?
+          = image_tag article.image.variant(resize_to_fit: [200, 200])
+        - else
+          %img{:src => "http://placehold.it/100x100"}/
+        .text_area
+          %p.title=article.title
+          %p.text=truncate(article.eyecatch, length: 100)
