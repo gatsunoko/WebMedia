@@ -31,7 +31,6 @@
         %li
           = link_to article.article do
             .img_area
-              %p.ranking_number="#{i.to_s}"
               - if article.article.image.present?
                 = image_tag article.article.image.variant(resize_to_fit: [200, 200])
               - else
