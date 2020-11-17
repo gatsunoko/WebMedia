@@ -22,59 +22,45 @@
         %img{:src => "http://placehold.it/200x50"}/
       .link_area
         - if user_signed_in?
-          = link_to '新規登録', new_article_path
-          = link_to 'おすすめ', recommend_articles_path
-          = link_to 'マイページ', user_path(current_user.id)
+          - if current_user.role != 'user'
+            = link_to '新規登録', new_article_path
+            - if current_user.role != 'admin'
+              = link_to 'おすすめ', recommend_articles_path
+            = link_to 'マイページ', user_path(current_user.id)
           = link_to 'プロフィール変更', edit_user_path(current_user.id)
           = link_to ' ログアウト', destroy_user_session_path, method: :delete
         - else
-          %a{:href => "#"} 無料会員登録
           = link_to 'ログイン', new_user_session_path
     .navbar.navbar_min
       .logo_area
         %img{:src => "https://placehold.it/150x40/?text=SiteLogo"}/
       %nav#min_navbar.global-nav
         %ul.global-nav__list.categories
-          %li.active
-            %a{:href => "#"}
+          - if user_signed_in?
+            %li= link_to '新規登録', new_article_path
+            %li= link_to 'おすすめ', recommend_articles_path
+            %li= link_to 'マイページ', user_path(current_user.id)
+            %li= link_to 'プロフィール変更', edit_user_path(current_user.id)
+            %li= link_to ' ログアウト', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'ログイン', new_user_session_path
+          - if controller_name == 'articles' && action_name == 'index'
+            - active = true
+          - else
+            - active = false
+          %li{ class: "#{active ? 'active' : ''}"}
+            = link_to root_path do
               %img{:src => "http://placehold.it/20x20"}>/
               ホーム
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ファッション
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              メイク・コスメ
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ヘアスタイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ネイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              美容
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ライフスタイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              恋愛
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              グルメ
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              旅行・おでかけ
+          - Genre.all.each do |genre|
+            - if controller_name == 'genres' && action_name == 'articles' && @genre.id == genre.id
+              - active = true
+            - else
+              - active = false
+            %li{ class: "#{active ? 'active' : ''}"}
+              = link_to articles_genre_path(genre.id) do
+                %img{:src => "http://placehold.it/20x20"}>/
+                = genre.title
       #js-hamburger.hamburger
         %span.hamburger__line.hamburger__line--1
         %span.hamburger__line.hamburger__line--2
