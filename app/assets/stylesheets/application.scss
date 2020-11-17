@@ -43,31 +43,6 @@ label {
   display: inline-block;
   width: 100%;
 }
-.trix-content .attachment--preview .attachment__caption {
-  font-size: 0.4rem;
-}
-button.trix-button {
-  font-size: 0.6rem;
-}
-.trix-content {
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--color4);
-  div, p {
-    font-size: 16px;
-    line-height: 1.4;
-    color: var(--color4);
-  }
-}
-underline {
-  text-decoration: underline;
-}
-#trix-toolbar-1 {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 10;
-}
 h1 {
   font-size: 0.9rem;
   color: black;

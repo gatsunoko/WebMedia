@@ -3,6 +3,7 @@ class CreateArticles < ActiveRecord::Migration[6.0]
     create_table :articles do |t|
       t.string :title
       t.text :eyecatch
+      t.text :content
       t.references :genre
       t.references :user
       t.boolean :release, null: false, default: false
