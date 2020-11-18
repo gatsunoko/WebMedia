@@ -27,7 +27,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 gem 'erb2haml', '~> 0.1.5'
-gem 'image_processing', '~> 1.2' #action_textdで画像を扱うためのGem
 gem 'nested_fields', git: 'https://github.com/kmdtmyk/nested_fields', ref: 'e6f20adaf5b58068d184d3ce2234e3da17d4a558'
 gem 'impressionist', git: 'https://github.com/charlotte-ruby/impressionist', ref: '46a582ff8cd3496da64f174b30b91f9d97e86643'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
@@ -35,7 +34,6 @@ gem 'order_as_specified', '~> 1.6'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
-gem 'simple_form', '~> 5.0', '>= 5.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
