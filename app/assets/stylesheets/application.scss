@@ -100,6 +100,17 @@ a {
 li {
   list-style: none;
 }
+/* oembed */
+span.oembedall-closehide {
+  display: none !important;
+}
+div.oembedall-container {
+  text-align: center;
+}
+.oembedall-container > br,
+.oembedall-closehide {
+    display: none;
+}
 /* ページデザイン */
 ul.categories {
   li {

@@ -1,4 +1,5 @@
 //= require nested_fields
+//= require jquery.oembed.js
 
 function previewFile(name) {
   var preview = document.querySelector('img[name="' + name + '"]');//どこでプレビューするか指定。'img[name="preview"]'などにすればimg複数あっても指定できます。

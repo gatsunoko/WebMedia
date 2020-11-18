@@ -34,8 +34,5 @@ module WebMedia
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    #CKEditor
-    default_tags = Loofah::HTML5::WhiteList::ALLOWED_CSS_PROPERTIES.add('position').add('padding-bottom').add('max-height').add('max-width').add('left').add('top') 
-    config.action_view.sanitized_allowed_attributes = ['href', 'src', 'alt', 'data-oembed-url', 'style', 'allowfullscreen', 'frameborder', 'tabindex', 'id', 'text', 'class', 'data-iframely-url'] 
   end
 end
