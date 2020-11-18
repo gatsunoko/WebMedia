@@ -46,8 +46,15 @@
   .field
     = form.label '公開する'
     = form.check_box :release, { class: 'checker_class_mp'}, 'true', 'false'
-  .container
-    #js-editor
-    = form.text_area :content, id: 'js-entry-form-content', style: 'display: none'
+  .field
+    = form.text_area :content, id: 'editor'
   .actions
     = form.submit
+%script{:src => "https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"}
+:javascript
+  ClassicEditor
+      .create( document.querySelector( '#editor' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+

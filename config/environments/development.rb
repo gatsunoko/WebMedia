@@ -62,5 +62,5 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   #docker関連
   config.file_watcher = ActiveSupport::FileUpdateChecker
-  config.reload_classes_only_on_change = false
+  # config.reload_classes_only_on_change = false
 end
