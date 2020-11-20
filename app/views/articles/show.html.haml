@@ -15,7 +15,8 @@
         = image_tag @article.image.variant(resize_to_fit: [600, 600])
     = link_to 'Edit', edit_article_path(@article)
     .article
-      = @article.content
+      = raw CGI.unescape_element @article.content.to_s, ['iframe', 'blockquote', 'p', 'a']
+      -# = @article.content
     .related_post
       %h4 関連する記事
       %ul.articles
@@ -30,3 +31,4 @@
                 %p.title= article.title
                 %p.text 「お洒落上級者さんは、高い洋服を着ているからハイセンスに見える」というのは全くの間違い。プチプラの洋服でも、着こなしによって高見えさせること...
   = render 'right_sidebar'
+%script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
