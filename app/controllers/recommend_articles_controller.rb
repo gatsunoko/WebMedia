@@ -22,7 +22,7 @@ class RecommendArticlesController < ApplicationController
 
     respond_to do |format|
       if @recommend_article.save
-        format.html { redirect_to @recommend_article, notice: 'Recommend article was successfully created.' }
+        format.html { redirect_to recommend_articles_path }
         format.json { render :show, status: :created, location: @recommend_article }
       else
         format.html { render :new }

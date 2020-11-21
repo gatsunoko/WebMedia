@@ -5,11 +5,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :timeoutable
-  # user          投稿はできる自分の投稿以外は編集できない
+  # user          投稿できない
+  # author        投稿はできる、自分の投稿のみ編集可能
   # contributor   他人の投稿も編集できる
   # editor        ゲームを投稿できる
   # admin         ユーザー権限を設定できる
-  enum role: { user: 0, contributor: 1, editor: 4, admin: 5 }
+  enum role: { user: 0, author: 1, contributor: 3, editor: 4, admin: 5 }
   validates :name, presence: true, length: { maximum: 50 }
 
   def self.find_for_google(auth)

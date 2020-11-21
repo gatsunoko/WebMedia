@@ -440,6 +440,8 @@ ul.categories {
       li {
         padding: 15px 0;
         border-bottom: 1px solid var(--color3);
+        display: flex;
+        justify-content: flex-start;
       a {
           display: flex;
           justify-content: flex-start;
