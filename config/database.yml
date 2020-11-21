@@ -17,5 +17,3 @@ test:
 production:
   <<: *default
   database: WebMedia_production
-  username: WebMedia
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
