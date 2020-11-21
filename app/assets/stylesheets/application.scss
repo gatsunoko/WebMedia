@@ -442,7 +442,7 @@ ul.categories {
         border-bottom: 1px solid var(--color3);
       a {
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           align-items: center;
           img {
             width: 100px;
@@ -675,6 +675,9 @@ footer {
         font-size: 16px;
         line-height: 1.4;
         color: black;
+      }
+      iframe {
+        max-width: 100%;
       }
     }
   }

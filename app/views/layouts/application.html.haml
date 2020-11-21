@@ -3,7 +3,7 @@
   %head
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title WebMedia
+    %title ねこの怪奇ファイル
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
@@ -35,46 +35,31 @@
         %img{:src => "https://placehold.it/150x40/?text=SiteLogo"}/
       %nav#min_navbar.global-nav
         %ul.global-nav__list.categories
-          %li.active
-            %a{:href => "#"}
+          - if user_signed_in?
+            %li= link_to '新規登録', new_article_path
+            %li= link_to 'おすすめ', recommend_articles_path
+            %li= link_to 'マイページ', user_path(current_user.id)
+            %li= link_to 'プロフィール変更', edit_user_path(current_user.id)
+            %li= link_to ' ログアウト', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'ログイン', new_user_session_path
+          - if controller_name == 'articles' && action_name == 'index'
+            - active = true
+          - else
+            - active = false
+          %li{ class: "#{active ? 'active' : ''}"}
+            = link_to root_path do
               %img{:src => "http://placehold.it/20x20"}>/
               ホーム
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ファッション
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              メイク・コスメ
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ヘアスタイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ネイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              美容
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              ライフスタイル
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              恋愛
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              グルメ
-          %li
-            %a{:href => "#"}
-              %img{:src => "http://placehold.it/20x20"}>/
-              旅行・おでかけ
+          - Genre.all.each do |genre|
+            - if controller_name == 'genres' && action_name == 'articles' && @genre.id == genre.id
+              - active = true
+            - else
+              - active = false
+            %li{ class: "#{active ? 'active' : ''}"}
+              = link_to articles_genre_path(genre.id) do
+                %img{:src => "http://placehold.it/20x20"}>/
+                = genre.title
       #js-hamburger.hamburger
         %span.hamburger__line.hamburger__line--1
         %span.hamburger__line.hamburger__line--2

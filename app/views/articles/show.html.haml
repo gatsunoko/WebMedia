@@ -1,7 +1,7 @@
 .contents.show
   .articles_area
     .title_area
-      %h1= @article.title
+      %h1=@article.title
       %p.text=@article.eyecatch
       %ul.tags
         - @article.tags.each do |tag|
@@ -29,6 +29,6 @@
                 %img{:src => "http://placehold.it/100x100"}/
               .text_area
                 %p.title= article.title
-                %p.text 「お洒落上級者さんは、高い洋服を着ているからハイセンスに見える」というのは全くの間違い。プチプラの洋服でも、着こなしによって高見えさせること...
+                %p.text= truncate(article.eyecatch, length: 100)
   = render 'right_sidebar'
 %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
