@@ -6,7 +6,7 @@
       - else
         %img{:src => "http://placehold.it/200x200"}/
     - else
-      %img{:src => "http://placehold.it/200x200"}/
+      = image_tag 'homeimg.png'
     - if controller_name == 'genres' && action_name == 'articles'
       .text_area
         %p.title=@genre.title
@@ -18,7 +18,7 @@
     - else
       .text_area
         %p.title ホーム
-        %p.text サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、サイト説明のテキスト、
+        %p.text 世界の不思議で怪奇なお話を集めたサイトです、世界の真実をあなたに！この世は不思議で満ち溢れています。
 .contents
   .left_sidebar
     %h5 記事
@@ -38,7 +38,10 @@
           - active = false
         %li{ class: "#{active ? 'active' : ''}"}
           = link_to articles_genre_path(genre.id) do
-            %img{:src => "http://placehold.it/20x20"}>/
+            - if genre.icon.present?
+              = image_tag genre.icon.variant(resize_to_fit: [20, 20])
+            - else
+              %img{:src => "http://placehold.it/20x20"}>/
             = genre.title
   .articles_area
     - if controller_name == 'genres' && action_name == 'articles'

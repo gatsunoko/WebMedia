@@ -21,7 +21,7 @@
   --color3: #eee;/*濃いグレイ*/
   --color4: #666666;/*すごく濃いグレイ*/
   --color5: #999999;/*文字に使うわりと濃いグレイ*/
-  --color6: #eb6a7a;/*ぴんく*/
+  --color6: #2b3e87;/*ぴんく*/
 }
 /* 基本スタイル */
 * {
@@ -84,7 +84,7 @@ h2 {
   color: black;
   border-bottom: 2px solid var(--color6);
   padding: 5px 0;
-  margin: 15px 0;
+  margin: 15px 0 !important;
 }
 h3 {
   font-size: 0.5rem;
@@ -190,7 +190,7 @@ ul.categories {
       cursor: pointer;
       width: 50px;
       height: 30px;
-      background: url("http://placehold.it/50x30") left top no-repeat;
+      background: url("/assets/search.png") left top no-repeat;
       border: 1px solid var(--color3);
     }
   }
@@ -217,10 +217,20 @@ ul.categories {
 }
 .navbar_min .logo_area {
   height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .navbar_min .logo_area img {
   height: inherit;
   width: auto;
+}
+.logo_area {
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .global-nav {
   position: fixed;

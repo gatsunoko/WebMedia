@@ -13,6 +13,7 @@
     = f.label :text
     = f.text_area :text
   .field
+    = f.label "トップ画像"
     = f.file_field :image,
                     id: 'previw',
                     onchange: "previewFile('previw')",
@@ -21,6 +22,16 @@
       = image_tag @genre.image.variant(resize_to_fit: [200, 200])
     - else
       = image_tag '', name: "previw"
+  .field
+    = f.label "アイコン"
+    = f.file_field :icon,
+                    id: 'previw',
+                    onchange: "previewFile('icon')",
+                    accept: 'image/*'
+    - if @genre.icon.present?
+      = image_tag @genre.icon.variant(resize_to_fit: [20, 20])
+    - else
+      = image_tag '', name: "icon"
   #tags.my-2
     %p
       タグ

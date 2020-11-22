@@ -7,14 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Genre.create(title: '世界のミステリー', text: '世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、')
 Genre.create(title: '日本のミステリー')
-Genre.create(title: '都市伝説')
 Genre.create(title: '神話')
 Genre.create(title: '化学')
 Genre.create(title: '人物')
 Genre.create(title: '組織')
+Genre.create(title: '未解決事件')
+Genre.create(title: '雑学')
 if Rails.env == "development"
   1000.times {
-    genre_id = rand(1..7)
+    genre_id = rand(1..9)
     article = Article.create(title: 'タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、タイトルテキスト、',
                             eyecatch: 'アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、アイキャッチテキスト、',
                             genre_id: genre_id,

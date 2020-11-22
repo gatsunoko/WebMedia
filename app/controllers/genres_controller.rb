@@ -79,6 +79,7 @@ class GenresController < ApplicationController
       params.require(:genre)
             .permit(:title,
                     :image,
+                    :icon,
                     genre_recommend_tags_attributes: [
                       :title,
                       :id,

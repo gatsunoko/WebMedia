@@ -19,7 +19,7 @@
           = f.text_field :keyword, value: search_params, class: 'search_text', placeholder: '気になるワードを入力'
           %input.search_button{:type => "submit", :value => ""}/
       = link_to root_path do
-        %img{:src => "http://placehold.it/200x50"}/
+        = image_tag 'nekokailogo.png'
       .link_area
         - if user_signed_in?
           - if current_user.role != 'user'
@@ -33,7 +33,8 @@
           = link_to 'ログイン', new_user_session_path
     .navbar.navbar_min
       .logo_area
-        %img{:src => "https://placehold.it/150x40/?text=SiteLogo"}/
+        = link_to root_path do
+          = image_tag 'nekokailogo.png'
       %nav#min_navbar.global-nav
         %ul.global-nav__list.categories
           - if user_signed_in?
