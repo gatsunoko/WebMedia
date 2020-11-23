@@ -8,12 +8,14 @@
       - @user.errors.full_messages.each do |msg|
         %li
           = msg
+  %p=@user.name
   .field
     = f.label '役職'
     = f.select :role, [['一般ユーザー', :user],
+                            ['投稿者', :author],
                             ['投稿者', :contributor],
                             ['編集者', :editor],
                             ['管理者', :admin]],
-                          {}, class: 'form-control col-sm-5 col-md-3'
+                          {}, class: 'select'
   .actions
-    = f.submit '保存', class: 'btn btn-primary'
+    = f.submit '保存', class: 'btn'

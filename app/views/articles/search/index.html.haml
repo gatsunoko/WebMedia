@@ -11,7 +11,6 @@
       - else
         %p.active{:href => "#"} 新着
         = link_to '人気順', "#{request.fullpath}&order=pv"
-    = link_to '新規登録', new_article_path
     = render 'articles/articles'
     .paginate
       .page_entries_info

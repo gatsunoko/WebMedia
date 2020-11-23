@@ -1,0 +1,6 @@
+%h2 ログイン
+.field
+  = link_to(user_google_omniauth_authorize_path, class: 'google_signed_link') do
+    %div{border: "0", width: "100%"}
+      %span.google_icon
+      %p Googleで登録/ログイン

@@ -6,7 +6,7 @@
       %ul.tags
         - @article.tags.each do |tag|
           %li.tag
-            %a{:href => "#"}=tag.title
+            = link_to tag.title, articles_search_path(keyword: tag.title)
       .count_area
         %p.count_text
           %span.count=@article.pv_count
@@ -14,6 +14,7 @@
       - if @article.image.present?
         = image_tag @article.image.variant(resize_to_fit: [600, 600])
     = link_to 'Edit', edit_article_path(@article)
+    = link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' }
     .article
       = raw CGI.unescape_element @article.content.to_s, ['iframe', 'blockquote', 'p', 'a']
       -# = @article.content

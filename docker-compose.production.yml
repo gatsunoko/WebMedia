@@ -39,6 +39,20 @@ services:
       options:
         max-size: 10m
         max-file: '10'
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - app
+    restart: always
+    depends_on:
+      - app
+    environment:
+      DOMAINS: 'nekokai.net -> http://app:80'
+      STAGE: 'production' # Don't use production until staging works
+      # FORCE_RENEW: 'true'
 volumes:
   mysql-data:
     driver: local

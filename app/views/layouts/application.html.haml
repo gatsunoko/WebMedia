@@ -24,7 +24,8 @@
         - if user_signed_in?
           - if current_user.role != 'user'
             = link_to '新規登録', new_article_path
-            - if current_user.role != 'admin'
+            - if current_user.role == 'admin' || |
+                 current_user.role == 'editor' |
               = link_to 'おすすめ', recommend_articles_path
             = link_to 'マイページ', user_path(current_user.id)
           = link_to 'プロフィール変更', edit_user_path(current_user.id)
@@ -49,6 +50,10 @@
             - active = true
           - else
             - active = false
+          .search_form
+            = form_with(url: articles_search_path, local: true, method: :get, class: 'form') do |f|
+              = f.text_field :keyword, value: search_params, class: 'search_text', placeholder: '気になるワードを入力'
+              %input.search_button{:type => "submit", :value => ""}/
           %li{ class: "#{active ? 'active' : ''}"}
             = link_to root_path do
               %img{:src => "http://placehold.it/20x20"}>/

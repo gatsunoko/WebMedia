@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       patch :role_update
     end
   end
-  
+
   resources :genres do
     member do
       get :articles
