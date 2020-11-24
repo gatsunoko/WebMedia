@@ -3,12 +3,29 @@
   %head
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ねこの怪奇ファイル
+    %meta{name: "description", content: "世界の驚愕の事実を掲載していくサービス！" }
+    %meta{name: "keywords", content: "ミステリー,怪奇,陰謀,権力争い"}
+    - title = content_for?(:title) ? yield(:title) : 'ねこの怪奇ファイル'
+    %title
+      = title
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = javascript_pack_tag 'application'
+    - if controller.controller_name == 'articles' && controller.action_name == 'show'
+      %meta{:content => "#{@article.title}", :property => "og:title"}/
+      %meta{:content => "article", :property => "og:type"}/
+      %meta{:content => "#{@article.eyecatch}", :property => "og:description"}/
+      %meta{:content => "#{request.url}", :property => "og:url"}/
+      - if @article.image.present?
+        %meta{:content => "#{rails_representation_url(@article.image.variant(resize_to_limit: [300, 300], strip: true).processed, disposition: :inline)}", :property => "og:image"}/
+    - else
+      %meta{:content => "ねこの怪奇ファイル", :property => "og:title"}/
+      %meta{:content => "website", :property => "og:type"}/
+      %meta{:content => "世界の驚愕の事実を掲載していくサービス！", :property => "og:description"}/
+      %meta{:content => "#{request.url}", :property => "og:url"}/
+      %meta{:content => "#{ENV['SITE_URL']}#{image_path('ogp_img.png')}", :property => "og:image"}/
   %body
     %nav.navbar_lg
       - search_params = ""
