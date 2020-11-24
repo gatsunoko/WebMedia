@@ -15,8 +15,13 @@
           View
       - if @article.image.present?
         = image_tag @article.image.variant(resize_to_fit: [600, 600])
-    = link_to 'Edit', edit_article_path(@article)
-    = link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' }
+    - if user_signed_in? && |
+         (@article.user_id == current_user.id || |
+         current_user.role == 'contributor' || |
+         current_user.role == 'editor' || |
+         current_user.role == 'admin') |
+      = link_to 'Edit', edit_article_path(@article)
+      = link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' }
     .article
       = raw CGI.unescape_element @article.content.to_s, ['iframe', 'blockquote', 'p', 'a']
       -# = @article.content
