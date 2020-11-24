@@ -28,7 +28,7 @@ services:
       TZ: Asia/Tokyo
   web:
     build:
-      context: ./docker/web
+      context: ./docker/web_local
     environment:
       TZ: Asia/Tokyo
     ports:
@@ -36,7 +36,6 @@ services:
       - '443:443'
     volumes:
       - ./log/nginx:/var/log/nginx
-      - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - app
     logging:

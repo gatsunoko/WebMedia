@@ -5,14 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Genre.create(title: '世界のミステリー', text: '世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、')
-Genre.create(title: '日本のミステリー')
-Genre.create(title: '神話')
-Genre.create(title: '化学')
-Genre.create(title: '人物')
-Genre.create(title: '組織')
-Genre.create(title: '未解決事件')
-Genre.create(title: '雑学')
+Genre.create(title: '世界のミステリー', order_number: 1, text: '世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、世界のミステリーあれやこれやのジャンル、')
+Genre.create(title: '日本のミステリー', order_number: 2)
+Genre.create(title: '神話', order_number: 3)
+Genre.create(title: '化学', order_number: 4)
+Genre.create(title: '人物', order_number: 5)
+Genre.create(title: '組織', order_number: 6)
+Genre.create(title: '未解決事件', order_number: 7)
+Genre.create(title: '雑学', order_number: 8)
 if Rails.env == "development"
   1000.times {
     genre_id = rand(1..9)

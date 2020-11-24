@@ -70,8 +70,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_061408) do
   create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "text"
+    t.integer "order_number", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_number"], name: "index_genres_on_order_number"
   end
 
   create_table "impressions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

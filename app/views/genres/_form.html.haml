@@ -13,6 +13,9 @@
     = f.label :text
     = f.text_area :text
   .field
+    = f.label :order_number
+    = f.number_field :order_number
+  .field
     = f.label "トップ画像"
     = f.file_field :image,
                     id: 'previw',

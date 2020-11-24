@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :can_edit, only: [:edit, :update, :duplication, :destroy]
+  before_action :unless_user, only: [:new, :create]
 
   def index
     # raise.params.inspect
@@ -127,6 +128,12 @@ class ArticlesController < ApplicationController
       current_user.role != 'contributor' &&
       current_user.role != 'editor' &&
       current_user.role != 'admin'
+        redirect_to root_path and return
+      end
+    end
+
+    def unless_user
+      if current_user.role == 'user'
         redirect_to root_path and return
       end
     end

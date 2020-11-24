@@ -39,9 +39,12 @@
       %nav#min_navbar.global-nav
         %ul.global-nav__list.categories
           - if user_signed_in?
-            %li= link_to '新規登録', new_article_path
-            %li= link_to 'おすすめ', recommend_articles_path
-            %li= link_to 'マイページ', user_path(current_user.id)
+            - if current_user.role != 'user'
+              %li= link_to '新規登録', new_article_path
+              - if current_user.role == 'admin' || |
+                  current_user.role == 'editor' |
+                %li= link_to 'おすすめ', recommend_articles_path
+              %li= link_to 'マイページ', user_path(current_user.id)
             %li= link_to 'プロフィール変更', edit_user_path(current_user.id)
             %li= link_to ' ログアウト', destroy_user_session_path, method: :delete
           - else
@@ -58,7 +61,7 @@
             = link_to root_path do
               %img{:src => "http://placehold.it/20x20"}>/
               ホーム
-          - Genre.all.each do |genre|
+          - Genre.all.order(order_number: :asc).each do |genre|
             - if controller_name == 'genres' && action_name == 'articles' && @genre.id == genre.id
               - active = true
             - else

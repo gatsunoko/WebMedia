@@ -4,7 +4,7 @@ class GenresController < ApplicationController
   before_action :is_admin, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   def index
-    @genres = Genre.all
+    @genres = Genre.all.order(order_number: :asc)
   end
 
   def articles
@@ -78,6 +78,8 @@ class GenresController < ApplicationController
     def genre_params
       params.require(:genre)
             .permit(:title,
+                    :text,
+                    :order_number,
                     :image,
                     :icon,
                     genre_recommend_tags_attributes: [

@@ -31,7 +31,7 @@
         = link_to root_path do
           %img{:src => "http://placehold.it/20x20"}>/
           ホーム
-      - Genre.all.each do |genre|
+      - Genre.all.order(order_number: :asc).each do |genre|
         - if controller_name == 'genres' && action_name == 'articles' && @genre.id == genre.id
           - active = true
         - else

@@ -5,4 +5,5 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get install -y nodejs yarn git vim
 WORKDIR /WebMedia
 COPY . /WebMedia
+RUN bundle install
 RUN yarn

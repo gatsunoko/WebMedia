@@ -543,7 +543,7 @@ ul.categories {
           border-bottom: 1px solid var(--color3);
         a {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             .img_area {
               position: relative;
