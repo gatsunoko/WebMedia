@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Eyecatch:
+  = @configration.eyecatch
+.image
+  - if @configration.sitelogo.present?
+    = image_tag @configration.sitelogo.variant(resize_to_fit: [200, 200])
+.image
+  - if @configration.home_icon.present?
+    = image_tag @configration.home_icon.variant(resize_to_fit: [20, 20])
+= link_to 'Edit', edit_configration_path(@configration)
+\|
+= link_to 'Back', configrations_path

@@ -1,12 +1,14 @@
 .eyecatch
   .eyecatch_inner
+    - configration = Configration.all.first
     - if controller_name == 'genres' && action_name == 'articles'
       - if @genre.image.present?
         = image_tag @genre.image.variant(resize_to_fit: [300, 300])
       - else
         %img{:src => "http://placehold.it/200x200"}/
     - else
-      = image_tag 'homeimg.png'
+      - if configration.sitelogo.present?
+        = image_tag configration.sitelogo
     - if controller_name == 'genres' && action_name == 'articles'
       .text_area
         %p.title=@genre.title
@@ -18,7 +20,7 @@
     - else
       .text_area
         %p.title ホーム
-        %p.text 世界の不思議で怪奇なお話を集めたサイトです、世界の真実をあなたに！この世は不思議で満ち溢れています。
+        %p.text= configration.eyecatch
 .contents
   .left_sidebar
     %h5 記事

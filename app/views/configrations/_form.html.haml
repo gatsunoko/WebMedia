@@ -1,0 +1,23 @@
+= form_for @configration do |f|
+  - if @configration.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@configration.errors.count, "error")} prohibited this configration from being saved:"
+      %ul
+        - @configration.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :eyecatch
+    = f.text_area :eyecatch
+  .field
+    = f.label "サイトロゴ"
+    = f.file_field :sitelogo,
+                    id: 'previw',
+                    accept: 'image/*'
+  .field
+    = f.label "ホームアイコン"
+    = f.file_field :home_icon,
+                    id: 'previw',
+                    accept: 'image/*'
+  .actions
+    = f.submit 'Save'

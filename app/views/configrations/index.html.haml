@@ -1,0 +1,21 @@
+%h1 Listing configrations
+
+%table
+  %thead
+    %tr
+      %th Eyecatch
+      %th
+      %th
+      %th
+
+  %tbody
+    - @configrations.each do |configration|
+      %tr
+        %td= configration.eyecatch
+        %td= link_to 'Show', configration
+        %td= link_to 'Edit', edit_configration_path(configration)
+        %td= link_to 'Destroy', configration, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Configration', new_configration_path
