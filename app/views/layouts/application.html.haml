@@ -84,7 +84,10 @@
               - active = false
             %li{ class: "#{active ? 'active' : ''}"}
               = link_to articles_genre_path(genre.id) do
-                %img{:src => "http://placehold.it/20x20"}>/
+                - if genre.icon.present?
+                  = image_tag genre.icon.variant(resize_to_fit: [20, 20])
+                - else
+                  %img{:src => "http://placehold.it/20x20"}>/
                 = genre.title
       #js-hamburger.hamburger
         %span.hamburger__line.hamburger__line--1
