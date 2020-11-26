@@ -32,6 +32,14 @@
       %meta{:content => "website", :property => "og:type"}/
       %meta{:content => "世界の驚愕の事実を掲載していくサービス！", :property => "og:description"}/
       %meta{:content => "#{request.url}", :property => "og:url"}/
+    - if /nekokai.net/ =~ request.url
+      /Google Analytics
+      %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=G-DZERLD88C8"}
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DZERLD88C8');
   %body
     %nav.navbar_lg
       - search_params = ""
